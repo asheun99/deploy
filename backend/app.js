@@ -1,0 +1,36 @@
+require("dotenv").config({ path: "./database/dbConfig.env" });
+const express = require("express");
+const app = express();
+const port = 3000;
+
+console.log(process.env.DB_NAME);
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
+app.get("/hello", (req, res) => {
+  console.log(req.url);
+  res.send("Hello World!");
+});
+
+let apiPath = "";
+if (process.argv[2] == "prod") {
+  apiPath = "/api";
+}
+
+app.get(`${apiPath}/board`, (req, res) => {
+  res.send({ title: "노드 api 서버 update!!!!" });
+});
+
+const path = require("path");
+
+const publicPath = path.join(__dirname, "public");
+app.use(express.static(publicPath));
+
+app.get("/", function (req, res, next) {
+  res.sendFile(path.join(__dirname, "./public", "index.html"));
+});
+
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, "./public", "index.html"));
+});
