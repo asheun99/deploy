@@ -19,7 +19,7 @@ if (process.argv[2] == "prod") {
 }
 
 app.get(`${apiPath}/board`, (req, res) => {
-  res.send({ title: "Github Actions Deploy Test" });
+  res.send({ title: "Github Actions Deploy Test!!" });
 });
 
 const path = require("path");
