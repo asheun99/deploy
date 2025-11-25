@@ -48,7 +48,7 @@ jobs:
             cd ~/deploy
             git pull origin main
             cd backend
-            npm ci --no-audit --no-fund
+            npm ci 
             pm2 restart app || pm2 start app.js --name "app" --prod
             pm2 save
           EOF
